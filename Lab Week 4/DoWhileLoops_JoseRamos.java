@@ -40,9 +40,6 @@ public class DoWhileLoops_JoseRamos
         // The next do-while will run untill all randNum are unique
         do
         {
-            // Here false will be false at the begining of the loop in case it repeat
-            repeat = false;
-
             // Here I am giving a random value from 1 to 100 to all randNum
             randNum1 = (int)((Math.random() * 100) + 1);
             randNum2 = (int)((Math.random() * 100) + 1);
@@ -51,17 +48,10 @@ public class DoWhileLoops_JoseRamos
             randNum5 = (int)((Math.random() * 100) + 1);
             randNum6 = (int)((Math.random() * 100) + 1);
 
-            // The next if statement is testing if any of the randNum values are the same
-            if((randNum1 == randNum2) || (randNum1 == randNum3) || (randNum1 == randNum4) || (randNum1 == randNum5) || (randNum1 == randNum6) ||
-            (randNum2 == randNum3) || (randNum2 == randNum4) || (randNum2 == randNum5) || (randNum2 == randNum6) ||
-            (randNum3 == randNum4) || (randNum3 == randNum5) || (randNum3 == randNum6) ||
-            (randNum4 == randNum5) || (randNum4 == randNum6) || (randNum5 == randNum6))
-            {
-                //System.out.println("Repeating:");         // Testing line
-                // The next boolen variable will be true
-                repeat = true;
-            }
-        }while(repeat);
+        }while((randNum1 == randNum2) || (randNum1 == randNum3) || (randNum1 == randNum4) || (randNum1 == randNum5) || (randNum1 == randNum6) ||
+        (randNum2 == randNum3) || (randNum2 == randNum4) || (randNum2 == randNum5) || (randNum2 == randNum6) ||
+        (randNum3 == randNum4) || (randNum3 == randNum5) || (randNum3 == randNum6) ||
+        (randNum4 == randNum5) || (randNum4 == randNum6) || (randNum5 == randNum6));
 
         // The next line is printing the value of each randNum
         System.out.print(randNum1 + "\t" + randNum2 + "\t" + randNum3 + "\t" + randNum4 + "\t" + randNum5 + "\t" + randNum6 + "\t");
