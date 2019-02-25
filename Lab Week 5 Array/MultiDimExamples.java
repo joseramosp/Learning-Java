@@ -14,25 +14,25 @@ public class MultiDimExamples
        //DECLARE AND ASSIGN THE VALUES TO AN ARRAY SHORT HAND
        String time[] = {"one","two","three","four","five","six","seven", "eight","nine","ten","eleven","twelve"};
 
-           for(hours = 0; hours<clock.length; hours++)
+       for(hours = 0; hours<clock.length; hours++)
+       {
+           //PRINTS THE HOUR OF THE DAY STORED IN THE TIME ARRAY
+           System.out.println(time[hours]);
+
+           for(seconds = 1; seconds<clock[hours].length; seconds++)
            {
-               //PRINTS THE HOUR OF THE DAY STORED IN THE TIME ARRAY
-               System.out.println(time[hours]);
-
-               for(seconds = 1; seconds<clock[hours].length; seconds++)
-               {
-                   //STORE THE SECONDS IN THE CLOCK
-                   clock[hours][seconds]=seconds;
+               //STORE THE SECONDS IN THE CLOCK
+               clock[hours][seconds]=seconds;
 
 
-                   //PRINT OUT THE "SECONDS" VALUES STORED IN THE CLOCK
-                   System.out.print(clock[hours][seconds] + "\t");
-               }
-
-               System.out.println(" " );
+               //PRINT OUT THE "SECONDS" VALUES STORED IN THE CLOCK
+               System.out.print(clock[hours][seconds] + "\t");
            }
 
-           System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+           System.out.println(" " );
+       }
+
+       System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
 
    }
 
