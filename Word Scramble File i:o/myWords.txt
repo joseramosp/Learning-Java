@@ -1,0 +1,6 @@
+monitor
+reader
+book
+notebook
+Hello
+Fire
