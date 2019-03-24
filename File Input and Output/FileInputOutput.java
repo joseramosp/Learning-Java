@@ -4,7 +4,7 @@ import java.util.*;
 
 public class FileInputOutput {      //(int wordIndex)
 
-    public ArrayList <String> getAllWords(ArrayList <String> myWords) throws IOException
+    public ArrayList <String> readWordsFromFile(ArrayList <String> myWords) throws IOException
     {
         FileInputStream fileByteStream = null; // File input stream
         Scanner inFS = null;                   // Scanner object

@@ -4,10 +4,10 @@ import java.io.IOException;
 
 public class StringScramble_JoseRamos
 {
-    String originalWord, scrambledWord;
+    String originalWord, scrambledWord, userWord;
     Scanner userInput = new Scanner(System.in);
 
-    public String scramble(ArrayList <String> word , int arrayIndex) throws IOException
+    public String scarmbleWord(ArrayList <String> word , int arrayIndex) throws IOException
     {
 
         originalWord = word.get(arrayIndex);
@@ -31,6 +31,17 @@ public class StringScramble_JoseRamos
         return scrambledWord;
     }
 
+    void playGame()
+    {
+        // userWord = userInput.next();
+        //
+        // while(i<3)
+        // {
+        //
+        //     i++;
+        // }
+    }
+
     public static void main(String agrs []) throws IOException
     {
         ArrayList <String> myWords = new ArrayList<String>();
@@ -38,12 +49,12 @@ public class StringScramble_JoseRamos
         FileInputOutput wordInputObject = new FileInputOutput();
         StringScramble_JoseRamos testObject = new StringScramble_JoseRamos();
 
-        myWords = wordInputObject.getAllWords(myWords);
+        myWords = wordInputObject.readWordsFromFile(myWords);
 
-        System.out.println("Guess the next word:");
-        System.out.println(testObject.scramble(myWords, 0));
-        System.out.println(testObject.scramble(myWords, 1));
-        System.out.println(testObject.scramble(myWords, 2));
+        System.out.print("Guess the next word: ");
+        System.out.println(testObject.scarmbleWord(myWords, 0) + "\n");
+        System.out.println(myWords + "\n");
+
 
     }
 

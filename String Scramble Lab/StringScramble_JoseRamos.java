@@ -13,17 +13,17 @@ public class StringScramble_JoseRamos
         originalWord = userInput.next();
         char tempHold [] = new char[originalWord.length()];
 
-        ArrayList <Integer> wordIndex;
-        wordIndex = new ArrayList<Integer>(originalWord.length());
+        ArrayList <Integer> letterIndex;
+        letterIndex = new ArrayList<Integer>(originalWord.length());
 
         for(int i = 0; i < originalWord.length(); i++)
         {
-            wordIndex.add(i);
+            letterIndex.add(i);
         }
 
         for(int i = 0; i < originalWord.length(); i++)
         {
-            tempHold[i] = originalWord.charAt(wordIndex.remove((int)((Math.random()*wordIndex.size()))));
+            tempHold[i] = originalWord.charAt(letterIndex.remove((int)((Math.random()*letterIndex.size()))));
         }
 
         scrambledWord = new String(tempHold);
@@ -31,7 +31,7 @@ public class StringScramble_JoseRamos
         return scrambledWord;
     }
 
-    public static void main(String agrs [])
+    public static void main(String agrs []) throws IOException
     {
 
         StringScramble_JoseRamos testObject = new StringScramble_JoseRamos();
