@@ -9,6 +9,9 @@ public class CalculatorGUI_JoseRamos extends WindowAdapter
 	//DECLARE SWING GUI COMPONENTS (NOT THAT DIFFERENT FROM AWT)
 	JFrame myJFrame;
 	JPanel myJPanel;
+    JPanel buttonsPanel;
+    JPanel bottomPanel;
+    JPanel subBottomPanel;
 	JTextField myJTextField;
 	JButton jB1, jB2;
     ArrayList <JButton> buttons = new ArrayList<JButton>();
@@ -18,10 +21,18 @@ public class CalculatorGUI_JoseRamos extends WindowAdapter
 		//INSTANTIATING SWING OBJECTS
 		myJFrame = new JFrame("Calculator by Jose Ramos");
 		myJPanel = new JPanel();
-        myJTextField = new JTextField("bbbkj");
+        buttonsPanel = new JPanel();
+        bottomPanel = new JPanel();
+        subBottomPanel = new JPanel();
+        myJTextField = new JTextField("1234.5678");
 
+        FlowLayout flowLayout = new FlowLayout();
+        flowLayout.setAlignment(FlowLayout.TRAILING);
+
+        // Creating a font type of the text field
         Font font1 = new Font("SansSerif", Font.BOLD, 20);
-        // Blocking text field
+
+        // Blocking text field AND assigning properties
         myJTextField.setEditable(false);
         myJTextField.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
         myJTextField.setFont(font1);
@@ -31,15 +42,15 @@ public class CalculatorGUI_JoseRamos extends WindowAdapter
 		jB2 = new JButton("Good bye!");
 
 		//changing the layout of the panel and then adding it to the frame
-		myJPanel.setLayout(new GridLayout(5,4));
+		myJPanel.setLayout(new GridLayout(4,4,-5,-5));
+        bottomPanel.setLayout(new GridLayout(1,3,-5,-5));
+        // bottomPanel.setAlignment(FlowLayout.TRAILING);
+        subBottomPanel.setLayout(new GridLayout(1,2,-5,-5));
+        // subBottomPanel.setAlignment(FlowLayout.TRAILING);
 
-		myJTextField.addActionListener(new ButtonHandler());
-		jB1.addActionListener(new ButtonHandler());
-		jB2.addActionListener(new ButtonHandler());
-
-        // myJFrame.add(myJPanel, BorderLayout.NORTH);
-		// myJFrame.add(jB1, BorderLayout.CENTER);
-		// myJFrame.add(jB2, BorderLayout.SOUTH);
+		// myJTextField.addActionListener(new ButtonHandler());
+		// jB1.addActionListener(new ButtonHandler());
+		// jB2.addActionListener(new ButtonHandler());
 
         String buttonsText = "%÷789X456-123+0.=";
 
@@ -52,15 +63,37 @@ public class CalculatorGUI_JoseRamos extends WindowAdapter
         }
         for(int i = 0; i<buttons.size(); i++)
         {
-            myJPanel.add(buttons.get(i));
+            if(((buttons.get(i)).getText()).equals("0"))
+            {
+                bottomPanel.add(buttons.get(i));
+            }
+            else if(((buttons.get(i)).getText()).equals(".") || ((buttons.get(i)).getText()).equals("="))
+            {
+                subBottomPanel.add(buttons.get(i));
+            }
+            else
+            {
+                myJPanel.add(buttons.get(i));
+            }
         }
+        // for(int i = buttons.size() - 3; i<buttons.size(); i++)
+        // {
+        //     bottomPanel.add(buttons.get(i));
+        // }
 
         // Adding panels and elements to frame
+        bottomPanel.add(subBottomPanel);
+        // myJPanel.add(bottomPanel);
+        myJFrame.add(bottomPanel, BorderLayout.SOUTH);
         myJFrame.add(myJTextField, BorderLayout.NORTH);
-        myJFrame.add(myJPanel);
+        myJFrame.add(myJPanel, BorderLayout.CENTER);
+        // bottomPanel.add(subBottomPanel,BorderLayout.EAST);
+        // myJFrame.add(bottomPanel, BorderLayout.SOUTH);
 
 		myJFrame.addWindowListener(this);
         //myJFrame.setSize(500,500);
+        // bottomPanel.pack();
+        // subBottomPanel.pack();
 		myJFrame.pack();
 		myJFrame.setVisible(true);
 	}
