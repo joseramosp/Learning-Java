@@ -21,13 +21,7 @@ public class CalculatorGUI_JoseRamos extends WindowAdapter
 		//INSTANTIATING SWING OBJECTS
 		myJFrame = new JFrame("Calculator by Jose Ramos");
 		myJPanel = new JPanel();
-        buttonsPanel = new JPanel();
-        bottomPanel = new JPanel();
-        subBottomPanel = new JPanel();
         myJTextField = new JTextField("1234.5678");
-
-        FlowLayout flowLayout = new FlowLayout();
-        flowLayout.setAlignment(FlowLayout.TRAILING);
 
         // Creating a font type of the text field
         Font font1 = new Font("SansSerif", Font.BOLD, 20);
@@ -37,63 +31,57 @@ public class CalculatorGUI_JoseRamos extends WindowAdapter
         myJTextField.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
         myJTextField.setFont(font1);
 
-		//creating new buttons
-		jB1 = new JButton("Hello!");
-		jB2 = new JButton("Good bye!");
-
 		//changing the layout of the panel and then adding it to the frame
-		myJPanel.setLayout(new GridLayout(4,4,-5,-5));
-        bottomPanel.setLayout(new GridLayout(1,3,-5,-5));
-        // bottomPanel.setAlignment(FlowLayout.TRAILING);
-        subBottomPanel.setLayout(new GridLayout(1,2,-5,-5));
-        // subBottomPanel.setAlignment(FlowLayout.TRAILING);
-
-		// myJTextField.addActionListener(new ButtonHandler());
-		// jB1.addActionListener(new ButtonHandler());
-		// jB2.addActionListener(new ButtonHandler());
+		myJPanel.setLayout(new GridBagLayout());
+        GridBagConstraints c = new GridBagConstraints();
+        c.fill = c.BOTH;
+        c.weightx = c.weighty = 0.5;
 
         String buttonsText = "%÷789X456-123+0.=";
+        int buttonsIndex = 0;
 
         buttons.add(new JButton("AC"));
         buttons.add(new JButton("+/-"));
+
 
         for(int i = 0; i<buttonsText.length(); i++)
         {
             buttons.add(new JButton(String.valueOf(buttonsText.charAt(i))));
         }
-        for(int i = 0; i<buttons.size(); i++)
+        for(int rowIndex = 0; rowIndex < 5; rowIndex++)
         {
-            if(((buttons.get(i)).getText()).equals("0"))
+            if(rowIndex < 4)
             {
-                bottomPanel.add(buttons.get(i));
-            }
-            else if(((buttons.get(i)).getText()).equals(".") || ((buttons.get(i)).getText()).equals("="))
-            {
-                subBottomPanel.add(buttons.get(i));
+                for(int columnIndex = 0; columnIndex < 4; columnIndex++)
+                {
+                    c.gridx = columnIndex;
+                    c.gridy = rowIndex;
+                    myJPanel.add(buttons.get(buttonsIndex++), c);
+                }
             }
             else
             {
-                myJPanel.add(buttons.get(i));
+                c.gridx = 0;
+                c.gridy = rowIndex;
+                c.gridwidth = 2;
+                myJPanel.add(buttons.get(buttonsIndex++), c);
+
+                c.gridx = 2;
+                c.gridy = rowIndex;
+                c.gridwidth = 1;
+                myJPanel.add(buttons.get(buttonsIndex++), c);
+
+                c.gridx = 3;
+                c.gridy = rowIndex;
+                c.gridwidth = 1;
+                myJPanel.add(buttons.get(buttonsIndex), c);
             }
         }
-        // for(int i = buttons.size() - 3; i<buttons.size(); i++)
-        // {
-        //     bottomPanel.add(buttons.get(i));
-        // }
 
-        // Adding panels and elements to frame
-        bottomPanel.add(subBottomPanel);
-        // myJPanel.add(bottomPanel);
-        myJFrame.add(bottomPanel, BorderLayout.SOUTH);
         myJFrame.add(myJTextField, BorderLayout.NORTH);
-        myJFrame.add(myJPanel, BorderLayout.CENTER);
-        // bottomPanel.add(subBottomPanel,BorderLayout.EAST);
-        // myJFrame.add(bottomPanel, BorderLayout.SOUTH);
+        myJFrame.add(myJPanel);
 
 		myJFrame.addWindowListener(this);
-        //myJFrame.setSize(500,500);
-        // bottomPanel.pack();
-        // subBottomPanel.pack();
 		myJFrame.pack();
 		myJFrame.setVisible(true);
 	}
