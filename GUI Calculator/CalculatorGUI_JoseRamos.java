@@ -18,7 +18,7 @@ public class CalculatorGUI_JoseRamos extends WindowAdapter
 
 	public void setUpGui()
 	{
-		//INSTANTIATING SWING OBJECTS
+		//SWING OBJECTS
 		myJFrame = new JFrame("Calculator by Jose Ramos");
 		myJPanel = new JPanel();
         numberFormat = NumberFormat.getNumberInstance();
@@ -142,31 +142,31 @@ public class CalculatorGUI_JoseRamos extends WindowAdapter
 			}
             else if(e.getActionCommand().equals("+"))
 			{
-				value1 = Integer.valueOf(myJTextField.getText());
+				value1 = Double.valueOf(myJTextField.getText());
                 myJTextField.setText("0");
                 operation = "+";
 			}
             else if(e.getActionCommand().equals("-"))
 			{
-                value1 = Integer.valueOf(myJTextField.getText());
+                value1 = Double.valueOf(myJTextField.getText());
                 myJTextField.setText("0");
                 operation = "-";
 			}
             else if(e.getActionCommand().equals("X"))
 			{
-                value1 = Integer.valueOf(myJTextField.getText());
+                value1 = Double.valueOf(myJTextField.getText());
                 myJTextField.setText("0");
                 operation = "X";
 			}
             else if(e.getActionCommand().equals("÷"))
 			{
-                value1 = Integer.valueOf(myJTextField.getText());
+                value1 = Double.valueOf(myJTextField.getText());
                 myJTextField.setText("0");
                 operation = "÷";
 			}
             else if(e.getActionCommand().equals("="))
 			{
-				value2 = Integer.valueOf(myJTextField.getText());
+				value2 = Double.valueOf(myJTextField.getText());
 
                 if(operation.equals("+"))
                 {
@@ -202,11 +202,11 @@ public class CalculatorGUI_JoseRamos extends WindowAdapter
 			}
 			else if(e.getActionCommand().equals("+/-"))
 			{
-				myJTextField.setValue(Integer.valueOf(myJTextField.getText()) * -1);
+				myJTextField.setValue(Double.valueOf(myJTextField.getText()) * -1);
 			}
 			else if(e.getActionCommand().equals("%"))
 			{
-				myJTextField.setValue(Integer.valueOf(myJTextField.getText()) * 0.01);
+				myJTextField.setValue(Double.valueOf(myJTextField.getText()) * 0.01);
 			}
 		}
 	}
