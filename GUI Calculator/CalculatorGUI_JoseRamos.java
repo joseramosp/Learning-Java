@@ -19,6 +19,9 @@ import java.awt.event.*;
 import java.lang.*;
 import java.util.*;
 import java.text.*;
+import java.math.*;
+// import java.math.RoundingMode;
+// import java.lang.Enum<RoundingMode>;
 
 public class CalculatorGUI_JoseRamos extends WindowAdapter
 {
@@ -126,9 +129,13 @@ public class CalculatorGUI_JoseRamos extends WindowAdapter
 	// This is a class that performs the action of every button
 	public class ButtonHandler implements ActionListener
 	{
+
 		// Method that is called when a button is pressed.
 		public void actionPerformed(ActionEvent e)
 		{
+			DecimalFormat df = new DecimalFormat("#.#######");
+			df.setRoundingMode(RoundingMode.CEILING);
+
 			// If a number button is pressed or point then it will be true
 			if(e.getActionCommand().equals("0") || e.getActionCommand().equals("1") || e.getActionCommand().equals("2") ||
             e.getActionCommand().equals("3") || e.getActionCommand().equals("4") || e.getActionCommand().equals("5") ||
@@ -153,6 +160,10 @@ public class CalculatorGUI_JoseRamos extends WindowAdapter
                     {
                         myJTextField.setText(e.getActionCommand());
                     }
+					else if(myJTextField.getText().equals("-0")) // In case the value on the screen is -0 it will add the number pressed as negative.
+					{
+						myJTextField.setText("-" + e.getActionCommand());
+					}
                     else // Add the button pressed to the text in myJTextField
                     {
                         myJTextField.setText(myJTextField.getText() + e.getActionCommand());
@@ -173,28 +184,28 @@ public class CalculatorGUI_JoseRamos extends WindowAdapter
 			{
 				value1 = Double.valueOf(myJTextField.getText()); // Assign the value in the myJTextField as a double to the variable value1
                 myJTextField.setText("0");
-                operation = "+";
+                operation = e.getActionCommand();
 			}
 			// Runs if - button is pressed
             else if(e.getActionCommand().equals("-"))
 			{
                 value1 = Double.valueOf(myJTextField.getText()); // Assign the value in the myJTextField as a double to the variable value1
                 myJTextField.setText("0");
-                operation = "-";
+                operation = e.getActionCommand();
 			}
 			// Runs if X button is pressed
             else if(e.getActionCommand().equals("X"))
 			{
                 value1 = Double.valueOf(myJTextField.getText()); // Assign the value in the myJTextField as a double to the variable value1
                 myJTextField.setText("0");
-                operation = "X";
+                operation = e.getActionCommand();
 			}
 			// Runs if ÷ button is pressed
             else if(e.getActionCommand().equals("÷"))
 			{
                 value1 = Double.valueOf(myJTextField.getText()); // Assign the value in the myJTextField as a double to the variable value1
                 myJTextField.setText("0");
-                operation = "÷";
+                operation = e.getActionCommand();
 			}
 			// Runs if = button is pressed
             else if(e.getActionCommand().equals("="))
@@ -204,26 +215,26 @@ public class CalculatorGUI_JoseRamos extends WindowAdapter
                 if(operation.equals("+")) // If the operation in process is + then run
                 {
                     result = value1 + value2;
-					myJTextField.setText(String.valueOf(result)); // Set the value in myJTextField as the value of result
+					myJTextField.setText(String.format(df.format(result))); // Set the value in myJTextField as the value of result
 					// myJTextField.setValue(Result);
                     value1 = result;
                 }
                 else if(operation.equals("-")) // If the operation in process is - then run
                 {
                     result = value1 - value2;
-                    myJTextField.setText(String.valueOf(result));
+                    myJTextField.setText(String.format(df.format(result)));
                     value1 = result;
                 }
                 else if(operation.equals("X")) // If the operation in process is X then run
                 {
                     result = value1 * value2;
-					myJTextField.setText(String.valueOf(result));
+					myJTextField.setText(String.format(df.format(result)));
                     value1 = result;
                 }
                 else if(operation.equals("÷")) // If the operation in process is ÷ then run
                 {
                     result = value1 / value2;
-					myJTextField.setText(String.valueOf(result));
+					myJTextField.setText(String.format(df.format(result)));
                     value1 = result;
                 }
 				else if(operation.equals("None")) // If the operation in process is None then run
@@ -234,7 +245,7 @@ public class CalculatorGUI_JoseRamos extends WindowAdapter
 			// Runs if +/- button is pressed
 			else if(e.getActionCommand().equals("+/-"))
 			{
-				myJTextField.setText(String.valueOf(Double.valueOf(myJTextField.getText()) * -1)); // Multiply the value in myJTextField by -1 and assign it to itself
+				myJTextField.setText(String.format(df.format(Double.valueOf(myJTextField.getText()) * -1))); // Multiply the value in myJTextField by -1 and assign it to itself
 				// myJTextField.setValue(Double.valueOf(myJTextField.getText()) * -1); // Multiply the value in myJTextField by -1 and assign it to itself
 			}
 			// Runs if % button is pressed
